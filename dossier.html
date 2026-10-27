@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Weazel News — Éditeur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&family=Caveat:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="ecran">
+
+    <!-- ============================ bandeau ============================ -->
+    <header class="bandeau cache" id="bandeau">
+      <div class="marque">
+        <div class="mot">WEAZEL <i>NEWS</i></div>
+        <div class="trait"></div>
+        <div class="devise">Informer<br>aujourd'hui.<br>Pour demain.</div>
+      </div>
+      <div class="coin">
+        <div class="role" id="uiRole">Éditeur de journal</div>
+        <div>
+          <div class="heure" id="horlogeHeure">00:00</div>
+          <div class="jour" id="horlogeJour"></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="corps">
+
+      <!-- ========================= rail gauche ========================= -->
+      <aside class="carte cache" id="railGauche">
+        <header>
+          <div class="vig" id="vigGauche"></div>
+          <div style="flex:1">
+            <h2 id="uiElementsL">Éléments</h2>
+            <p id="uiElementsP"></p>
+          </div>
+          <div class="outils-haut">
+            <button type="button" id="btnUndo"></button>
+            <button type="button" id="btnRedo"></button>
+          </div>
+        </header>
+
+        <div class="defile">
+          <div class="sect">
+            <div class="outils" id="outils"></div>
+          </div>
+
+          <div class="sect">
+            <h3 class="titre-sect" id="uiPagesL">Pages</h3>
+            <div class="bande" id="bandePages"></div>
+            <div class="grille" style="grid-template-columns:1fr 1fr">
+              <button class="plat" id="btnDupPage" type="button"></button>
+              <button class="plat danger" id="btnSupprPage" type="button"></button>
+            </div>
+          </div>
+
+          <div class="sect">
+            <h3 class="titre-sect" id="uiModeleL">Modèles de page</h3>
+            <div id="listeModeles"></div>
+          </div>
+        </div>
+
+        <div class="signature-carte">
+          <span>Weazel News Editor</span>
+          <span><span class="point">●</span> <span id="compteModeles"></span></span>
+        </div>
+      </aside>
+
+      <!-- =========================== la page =========================== -->
+      <main class="scene cache" id="scene">
+        <div class="cadre" id="cadre">
+          <div class="page" id="page"></div>
+        </div>
+      </main>
+
+      <!-- ========================= rail droit ========================== -->
+      <aside class="carte cache" id="railDroite">
+        <header>
+          <div class="vig" id="vigDroite"></div>
+          <div>
+            <h2 id="uiPanneauL">Page</h2>
+            <p id="uiPanneauP"></p>
+          </div>
+        </header>
+
+        <div class="defile" id="inspecteur"></div>
+
+        <div class="pied">
+          <div class="stock" id="stock"></div>
+          <div class="ligne-quantite">
+            <span class="etiq" id="uiQuantiteL">Exemplaires</span>
+            <div class="compteur">
+              <button type="button" id="moins">−</button>
+              <input type="number" id="quantite" value="1" min="1" max="100">
+              <button type="button" id="plus">+</button>
+            </div>
+          </div>
+          <button class="principal" id="btnImprimer" type="button"></button>
+          <button class="second" id="btnApercu" type="button"></button>
+          <button class="second cache" id="btnLien" type="button"></button>
+          <div class="duo-archives">
+            <button class="second" id="btnBrouillons" type="button"></button>
+            <button class="second" id="btnArchives" type="button"></button>
+            <button class="second" id="btnArchiver" type="button"></button>
+          </div>
+          <button class="second" id="btnAnnuler" type="button"></button>
+        </div>
+
+        <div class="signature-carte">
+          <span class="ls">Los Santos</span>
+          <span class="droite" id="sauvegarde">Sauvegardé</span>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- ============================ lecteur =========================== -->
+    <section id="lecteur" class="cache">
+      <div class="colonne-lecture">
+        <div class="cadre" id="cadreLecture">
+          <div class="page" id="pageLecture"></div>
+        </div>
+        <div class="barre-pages cache" id="barrePages">
+          <button type="button" id="pagePrec" aria-label="Page précédente">‹</button>
+          <span id="pageCompte">1 / 1</span>
+          <button type="button" id="pageSuiv" aria-label="Page suivante">›</button>
+          <em id="uiTourner"></em>
+        </div>
+        <div class="signature-lecture" id="signatureLecture"></div>
+      </div>
+      <div class="actions-lecture">
+        <button class="second cache" id="btnImprimerLecture" type="button"></button>
+        <button class="second" id="btnFermerLecture" type="button"></button>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="menuContexte" class="cache"></div>
+
+  <div id="modale" class="cache">
+    <div id="modaleFond"></div>
+    <div id="modaleBoite"></div>
+  </div>
+
+  <div id="notif" class="cache"></div>
+
+  <script src="js/icones.js"></script>
+  <script src="js/etat.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="js/elements.js"></script>
+  <script src="js/panneaux.js"></script>
+  <script src="js/modales.js"></script>
+  <script src="js/app.js"></script>
+  <script>window.MT_WEB = {"doc":{"format":"a4","l":794,"h":1123,"pages":[{"fond":"#fbfaf7","els":[{"t":"image","x":64,"y":44,"w":70,"h":70,"url":"https://labshumane374-netizen.github.io/Code-Procedure-Penale/sceau-doj.png","fit":"contain"},{"t":"texte","x":150,"y":52,"w":580,"txt":"Department of Justice","px":19,"f":3,"g":1,"c":"#a16207"},{"t":"texte","x":150,"y":80,"w":580,"txt":"DOSSIER D’ARRESTATION","px":10,"f":3,"c":"#64748b","ls":160},{"t":"forme","x":64,"y":126,"w":666,"h":3,"c":"#a16207"},{"t":"texte","x":64,"y":146,"w":666,"txt":"Dossier d’arrestation n°7 — Paul Mitchell","px":25,"f":1,"g":1,"c":"#0f172a","lh":115},{"t":"texte","x":64,"y":185,"w":666,"txt":"N° ARR-00007 · Imprimé le 27/10/2026 à 10h40 par William LOW (Juge d’État)","px":11,"f":3,"c":"#475569","lh":150},{"t":"forme","x":64,"y":212,"w":666,"h":1,"c":"#cbd5e1"},{"t":"texte","x":64,"y":234,"w":666,"txt":"INFORMATIONS","px":11,"f":3,"g":1,"c":"#a16207","ls":140},{"t":"texte","x":64,"y":256,"w":666,"txt":"Prévenu : Paul Mitchell\nInterpellation : LSPD Curtis Carter · Sergent\nOuvert le : 27/10 à 00h47\nProcédure : Comparution devant le DOJ (délit majeur)\nAvant procès : Bracelet électronique\nInterpellation : 📍 Grove Street, Davis\nGaranties : ✔ Droits notifiés · ⚖ Avocat demandé","px":15,"f":2,"c":"#1e293b","lh":150},{"t":"texte","x":64,"y":429.5,"w":666,"txt":"CHEFS D’ACCUSATION","px":11,"f":3,"g":1,"c":"#a16207","ls":140},{"t":"texte","x":64,"y":451.5,"w":666,"txt":"CP 211 · Vol à main armée · 30 min · Délit majeur\nCP 203 · Port d’arme prohibée · 10 min · Délit mineur","px":15,"f":2,"c":"#1e293b","lh":150},{"t":"texte","x":64,"y":512.5,"w":666,"txt":"FAITS","px":11,"f":3,"g":1,"c":"#a16207","ls":140},{"t":"texte","x":64,"y":534.5,"w":666,"txt":"Le suspect a été interpellé à la sortie de la supérette de Grove Street après un\nsignalement de vol à main armée. Une arme blanche a été retrouvée sous le siège\nconducteur de son véhicule.","px":15,"f":2,"c":"#1e293b","lh":150},{"t":"texte","x":64,"y":618,"w":666,"txt":"PREUVES","px":11,"f":3,"g":1,"c":"#a16207","ls":140},{"t":"texte","x":64,"y":640,"w":666,"txt":"▸ SC-0012 · Couteau ensanglanté · Arme · Curtis Carter · 27/10 00:52\nRetrouvé sous le siège conducteur du véhicule 46ABC123.\n\n▸ SC-0013 · Vidéo de surveillance de la supérette · Photo · Curtis Carter ·\n27/10 01:05\nCapture de 00h31 : le suspect menace le caissier.","px":15,"f":2,"c":"#1e293b","lh":150},{"t":"forme","x":60,"y":779,"w":329,"h":219,"c":"#ffffff","r":6,"bw":1,"bc":"#cbd5e1"},{"t":"image","x":64,"y":783,"w":321,"h":211,"url":"https://labshumane374-netizen.github.io/oryxis-apercu-impression/preuve-couteau.svg","fit":"contain"},{"t":"texte","x":64,"y":1002,"w":321,"a":"c","txt":"SC-0012 · Couteau ensanglanté · Arme","px":10,"f":3,"c":"#64748b"},{"t":"forme","x":405,"y":779,"w":329,"h":219,"c":"#ffffff","r":6,"bw":1,"bc":"#cbd5e1"},{"t":"image","x":409,"y":783,"w":321,"h":211,"url":"https://labshumane374-netizen.github.io/oryxis-apercu-impression/preuve-camera.svg","fit":"contain"},{"t":"texte","x":409,"y":1002,"w":321,"a":"c","txt":"SC-0013 · Vidéo de surveillance de la supérette · Photo","px":10,"f":3,"c":"#64748b"},{"t":"forme","x":64,"y":1067,"w":666,"h":1,"c":"#cbd5e1"},{"t":"texte","x":64,"y":1077,"w":666,"a":"c","px":9,"f":3,"c":"#94a3b8","ls":60,"txt":"Department of Justice  ·  ARR-00007  ·  page 1 / 2  ·  DOCUMENT CONFIDENTIEL"}]},{"fond":"#fbfaf7","els":[{"t":"texte","x":64,"y":40,"w":666,"txt":"Department of Justice  ·  ARR-00007","px":10,"f":3,"g":1,"c":"#a16207","ls":80},{"t":"forme","x":64,"y":62,"w":666,"h":1,"c":"#cbd5e1"},{"t":"texte","x":64,"y":86,"w":666,"txt":"SAISIES","px":11,"f":3,"g":1,"c":"#a16207","ls":140},{"t":"texte","x":64,"y":108,"w":666,"txt":"▸ Argent liquide · × 1840 · Curtis Carter · 27/10 00:55","px":15,"f":2,"c":"#1e293b","lh":150},{"t":"texte","x":64,"y":146.5,"w":666,"txt":"VÉHICULES","px":11,"f":3,"g":1,"c":"#a16207","ls":140},{"t":"texte","x":64,"y":168.5,"w":666,"txt":"▸ 46ABC123 · Sultan · Curtis Carter · 27/10 00:58","px":15,"f":2,"c":"#1e293b","lh":150},{"t":"texte","x":430,"y":973,"w":300,"txt":"Fait à Los Santos, le 27/10/2026 à 10h43","px":11,"f":2,"a":"r","c":"#475569"},{"t":"texte","x":430,"y":997,"w":300,"txt":"William LOW","px":30,"f":5,"a":"r","c":"#1e3a8a"},{"t":"texte","x":430,"y":1041,"w":300,"txt":"William LOW · Juge d’État","px":11,"f":3,"a":"r","c":"#334155"},{"t":"forme","x":64,"y":1067,"w":666,"h":1,"c":"#cbd5e1"},{"t":"texte","x":64,"y":1077,"w":666,"a":"c","px":9,"f":3,"c":"#94a3b8","ls":60,"txt":"Department of Justice  ·  ARR-00007  ·  page 2 / 2  ·  DOCUMENT CONFIDENTIEL"}]}]},"nom":"Dossier d’arrestation n°7 — Paul Mitchell","auteur":"William LOW","date":"27/10/2026","polices":[{"id":"journal","nom":"Journal","css":"\"Playfair Display\", Georgia, serif"},{"id":"classique","nom":"Classique","css":"\"Libre Baskerville\", Georgia, serif"},{"id":"moderne","nom":"Moderne","css":"\"Inter\", \"Segoe UI\", sans-serif"},{"id":"machine","nom":"Machine","css":"\"IBM Plex Mono\", Consolas, monospace"},{"id":"manuscrit","nom":"Manuscrit","css":"\"Caveat\", cursive"}]};</script>
+  <script src="js/web.js"></script>
+</body>
+</html>
